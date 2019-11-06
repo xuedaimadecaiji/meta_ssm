@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zeng.ssm.dao.SceneDataDao">
+
+    <resultMap id="SimpleResultMap" type="com.zeng.ssm.model.SceneData">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+        <result column="category_root_id" jdbcType="INTEGER" property="categoryRootId" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+        <association property="category" column="category_id" select="com.zeng.ssm.dao.CategoryDao.selectByPrimaryKey"/>
+    </resultMap>
+
+    <resultMap id="BaseResultMap" type="com.zeng.ssm.model.SceneData">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+        <result column="category_root_id" jdbcType="INTEGER" property="categoryRootId" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+        <association property="category" column="category_id" select="com.zeng.ssm.dao.CategoryDao.selectByPrimaryKey"/>
+        <collection column="id" property="materialDataList" ofType="com.zeng.ssm.model.MaterialData"
+                    javaType="java.util.ArrayList" select="com.zeng.ssm.dao.MaterialDataDao.selectMaterialDataListBySceneDataId"/>
+        <collection column="id" property="energyDataList" ofType="com.zeng.ssm.model.EnergyData"
+                    javaType="java.util.ArrayList" select="com.zeng.ssm.dao.EnergyDataDao.selectEnergyDataListBySceneDataId"/>
+        <collection column="id" property="deviceDataList" ofType="com.zeng.ssm.model.DeviceData"
+                    javaType="java.util.ArrayList" select="com.zeng.ssm.dao.DeviceDataDao.selectDeviceDataListBySceneDataId"/>
+        <collection column="id" property="envLoadDataList" ofType="com.zeng.ssm.model.EnvLoadData"
+                    javaType="java.util.ArrayList" select="com.zeng.ssm.dao.EnvLoadDataDao.selectEnvLoadDataListBySceneDataId"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.zeng.ssm.model.SceneData" useGeneratedKeys="true" keyProperty="id" >
+        insert into scene_data (`category_id`,`category_root_id`, `title`, `description`)
+        values (#{categoryId,jdbcType=INTEGER},#{categoryRootId,jdbcType=INTEGER},#{title,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="selectByContent" parameterType="java.lang.String" resultMap="SimpleResultMap">
+        SELECT * from `scene_data`
+        <if test="content != null">
+            where title like '%${content}%'
+        </if>
+        ;
+    </select>
+
+    <select id="selectAll" parameterType="int" resultMap="BaseResultMap">
+        SELECT * from `scene_data`
+        <if test="categoryRootId != null">
+        where category_root_id = #{categoryRootId}
+        </if>
+        ;
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT * from `scene_data` where id = #{pk};
+    </select>
+
+    <update id="updateByPrimaryKey" parameterType="com.zeng.ssm.model.SceneData">
+        update scene_data
+        set id = #{id,jdbcType=INTEGER},
+          category_id = #{categoryId,jdbcType=INTEGER},
+          category_root_id = #{categoryRootId,jdbcType=INTEGER},
+          `title` = #{title,jdbcType=VARCHAR},
+          `description` = #{description,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+</mapper>

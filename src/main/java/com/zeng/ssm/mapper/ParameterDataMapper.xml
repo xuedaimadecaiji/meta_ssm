@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zeng.ssm.dao.ParameterDataDao">
+    <resultMap id="BaseResultMap" type="com.zeng.ssm.model.ParameterData">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="scene_data_id" jdbcType="INTEGER" property="sceneDataId" />
+        <result column="parameter_id" jdbcType="INTEGER" property="parameterId" />
+        <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+        <result column="value" jdbcType="VARCHAR" property="value" />
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+        <association property="parameter" column="parameter_id" select="com.zeng.ssm.dao.ParameterDao.selectByPrimaryKey"/>
+        <association property="unit" column="unit_id" select="com.zeng.ssm.dao.UnitDao.selectByPrimaryKey"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, scene_data_id, parameter_id
+    </sql>
+
+    <insert id="insert" parameterType="com.zeng.ssm.model.ParameterData" useGeneratedKeys="true" keyProperty="id" >
+        insert into parameter_data (id, scene_data_id, `parameter_id`, `unit_id`, `value`)
+        values (#{id,jdbcType=INTEGER}, #{sceneDataId,jdbcType=INTEGER}, #{parameterId,jdbcType=INTEGER},
+        #{unitId,jdbcType=INTEGER}, #{value, jdbcType=VARCHAR})
+    </insert>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT * from `parameter_data` where id = #{pk};
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT * from `parameter_data`;
+    </select>
+
+    <select id="selectParameterDataListBySceneDataId" resultMap="BaseResultMap">
+        select * from `parameter_data` where scene_data_id = #{pk}
+    </select>
+
+</mapper>

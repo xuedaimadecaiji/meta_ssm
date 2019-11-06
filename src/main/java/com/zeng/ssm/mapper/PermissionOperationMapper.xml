@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zeng.ssm.dao.PermissionOperationDao">
+    <resultMap id="BaseResultMap" type="com.zeng.ssm.model.PermissionOperation">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.zeng.ssm.model.PermissionOperation" useGeneratedKeys="true" keyProperty="id" >
+        insert into `permission_operation` (id, title)
+        values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT * from `permission_operation` where id = #{pk};
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT * from `permission_operation`;
+    </select>
+
+</mapper>

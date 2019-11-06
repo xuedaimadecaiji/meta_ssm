@@ -1,0 +1,13 @@
+package com.zeng.ssm.dao;
+
+import com.zeng.ssm.common.SQL;
+import com.zeng.ssm.model.PermissionData;
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+
+@Mapper
+public interface PermissionDataDao extends SQL<PermissionData, Integer> {
+
+    List<PermissionData> selectListByGroupId(Integer userGroupId);
+}

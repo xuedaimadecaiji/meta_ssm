@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zeng.ssm.dao.DeviceDataDao">
+    <resultMap id="BaseResultMap" type="com.zeng.ssm.model.DeviceData">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="scene_data_id" jdbcType="INTEGER" property="sceneDataId" />
+        <result column="device_id" jdbcType="INTEGER" property="deviceId" />
+        <result column="work_time" jdbcType="VARCHAR" property="workTime" />
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+        <association property="device" column="device_id" select="com.zeng.ssm.dao.DeviceDao.selectByPrimaryKey"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, scene_data_id, device_id
+    </sql>
+    <insert id="insert" parameterType="com.zeng.ssm.model.DeviceData" useGeneratedKeys="true" keyProperty="id" >
+        insert into `device_data` (id, scene_data_id, `device_id`, `work_time`)
+        values (#{id,jdbcType=INTEGER}, #{sceneDataId,jdbcType=INTEGER}, #{deviceId,jdbcType=INTEGER}, #{workTime,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT * from `device_data` where id = #{pk};
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT * from `device_data`;
+    </select>
+
+    <select id="selectDeviceDataListBySceneDataId" resultMap="BaseResultMap">
+        select * from `device_data` where scene_data_id = #{pk}
+    </select>
+
+</mapper>

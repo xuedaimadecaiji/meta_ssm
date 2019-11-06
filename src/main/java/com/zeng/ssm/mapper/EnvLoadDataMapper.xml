@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zeng.ssm.dao.EnvLoadDataDao">
+    <resultMap id="BaseResultMap" type="com.zeng.ssm.model.EnvLoadData">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="scene_data_id" jdbcType="INTEGER" property="sceneDataId" />
+        <result column="env_load_id" jdbcType="INTEGER" property="envLoadId" />
+        <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+        <result column="value" jdbcType="VARCHAR" property="value" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+        <association property="envLoad" column="env_load_id" select="com.zeng.ssm.dao.EnvLoadDao.selectByPrimaryKey"/>
+        <association property="unit" column="unit_id" select="com.zeng.ssm.dao.UnitDao.selectByPrimaryKey"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, scene_data_id, env_load_id
+    </sql>
+    <insert id="insert" parameterType="com.zeng.ssm.model.Process" useGeneratedKeys="true" keyProperty="id" >
+        insert into `env_load_data` (id, scene_data_id, `env_load_id`, `unit_id`, `value`, `description`)
+        values (#{id,jdbcType=INTEGER}, #{sceneDataId,jdbcType=INTEGER}, #{envLoadId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER},
+         #{value,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT * from `env_load_data` where id = #{pk};
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT * from `env_load_data`;
+    </select>
+
+    <select id="selectEnvLoadDataListBySceneDataId" resultMap="BaseResultMap">
+        select * from `env_load_data` where scene_data_id = #{pk}
+    </select>
+
+</mapper>

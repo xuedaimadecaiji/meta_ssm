@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zeng.ssm.dao.SystemTableDao">
+    <resultMap id="BaseResultMap" type="com.zeng.ssm.model.SystemTable">
+        <result column="TABLE_NAME" jdbcType="VARCHAR" property="tableName" />
+        <result column="COLUMN_NAME" jdbcType="VARCHAR" property="columnName" />
+        <result column="DATA_TYPE" jdbcType="VARCHAR" property="dataType" />
+        <result column="COLUMN_COMMENT" jdbcType="VARCHAR" property="columnComment" />
+    </resultMap>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT * from `collect_reason` where id = #{pk};
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from information_schema.TABLES where TABLE_SCHEMA=(select database());
+    </select>
+
+</mapper>
