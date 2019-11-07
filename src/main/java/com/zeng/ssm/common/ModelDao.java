@@ -2,7 +2,7 @@ package com.zeng.ssm.common;
 
 import java.util.List;
 
-public interface SQL<T, KEY> {
+public interface ModelDao<T, KEY> {
     int deleteByPrimaryKey(KEY pk);
 
     int insert(T record);

@@ -1,6 +1,8 @@
 package com.zeng.ssm.model;
 
-public class CalculateMethod {
+import com.zeng.ssm.common.Model;
+
+public class CalculateMethod implements Model {
 
     private int id;
     private String title;

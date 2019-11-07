@@ -1,11 +1,12 @@
 package com.zeng.ssm.model;
 
+import java.util.List;
+
 public class SystemTable {
 
     private String tableName;
-    private String columnName;
-    private String dataType;
-    private String columnComment;
+    private String tableComment;
+    private List<SystemColumn> systemColumnList;
 
     public String getTableName() {
         return tableName;
@@ -15,27 +16,19 @@ public class SystemTable {
         this.tableName = tableName;
     }
 
-    public String getColumnName() {
-        return columnName;
+    public String getTableComment() {
+        return tableComment;
     }
 
-    public void setColumnName(String columnName) {
-        this.columnName = columnName;
+    public void setTableComment(String tableComment) {
+        this.tableComment = tableComment;
     }
 
-    public String getDataType() {
-        return dataType;
+    public List<SystemColumn> getSystemColumnList() {
+        return systemColumnList;
     }
 
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
-    }
-
-    public String getColumnComment() {
-        return columnComment;
-    }
-
-    public void setColumnComment(String columnComment) {
-        this.columnComment = columnComment;
+    public void setSystemColumnList(List<SystemColumn> systemColumnList) {
+        this.systemColumnList = systemColumnList;
     }
 }

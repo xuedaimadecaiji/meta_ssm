@@ -1,8 +1,10 @@
 package com.zeng.ssm.model;
 
+import com.zeng.ssm.common.Model;
+
 import java.util.List;
 
-public class Category {
+public class Category implements Model {
 
     private Integer id;
     private Integer parentId;
