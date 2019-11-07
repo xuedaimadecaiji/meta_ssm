@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface DeviceDataDao extends ModelDao<DeviceData, Integer> {
+public interface DeviceDataDao extends ModelDao{
 
     List<DeviceData> selectDeviceDataListBySceneDataId (Integer pk);
 }

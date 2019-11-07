@@ -1,6 +1,8 @@
 package com.zeng.ssm.model;
 
-public class MonitorRange {
+import com.zeng.ssm.common.Model;
+
+public class MonitorRange implements Model {
 
     private int id;
     private String title;

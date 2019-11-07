@@ -5,5 +5,5 @@ import com.zeng.ssm.model.Parameter;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface ParameterDao extends ModelDao<Parameter, Integer> {
+public interface ParameterDao extends ModelDao{
 }

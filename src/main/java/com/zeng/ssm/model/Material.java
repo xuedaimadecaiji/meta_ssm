@@ -1,8 +1,9 @@
 package com.zeng.ssm.model;
 
+import com.zeng.ssm.common.Model;
 import com.zeng.ssm.common.Searchable;
 
-public class Material extends Searchable {
+public class Material extends Searchable implements Model {
 
     private Integer id;
     private String title;

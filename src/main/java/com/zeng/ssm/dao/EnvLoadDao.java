@@ -5,5 +5,5 @@ import com.zeng.ssm.model.EnvLoad;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface EnvLoadDao extends ModelDao<EnvLoad, Integer> {
+public interface EnvLoadDao extends ModelDao{
 }

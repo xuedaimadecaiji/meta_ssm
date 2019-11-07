@@ -1,6 +1,8 @@
 package com.zeng.ssm.model;
 
-public class MonitorMethod {
+import com.zeng.ssm.common.Model;
+
+public class MonitorMethod implements Model {
 
     private int id;
     private String title;

@@ -1,6 +1,8 @@
 package com.zeng.ssm.model;
 
-public class CollectProblem {
+import com.zeng.ssm.common.Model;
+
+public class CollectProblem implements Model {
 
     private int id;
     private String title;

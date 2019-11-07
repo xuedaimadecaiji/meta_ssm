@@ -1,11 +1,12 @@
 package com.zeng.ssm.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zeng.ssm.common.Model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class OtherData {
+public class OtherData  implements Model {
 
     private Integer id;
     private Integer sceneDataId;

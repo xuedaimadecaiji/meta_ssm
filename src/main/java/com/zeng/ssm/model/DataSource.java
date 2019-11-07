@@ -1,6 +1,8 @@
 package com.zeng.ssm.model;
 
-public class DataSource {
+import com.zeng.ssm.common.Model;
+
+public class DataSource implements Model {
 
     private Integer id;
     private String title;

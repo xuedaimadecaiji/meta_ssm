@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface SystemColumnDao extends ModelDao<SystemColumn, Integer> {
+public interface SystemColumnDao extends ModelDao{
 
     /**
      * 查找tableName所有的列

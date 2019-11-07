@@ -7,6 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface EnvLoadDataDao extends ModelDao<EnvLoadData, Integer> {
+public interface EnvLoadDataDao extends ModelDao{
     List<EnvLoadData> selectEnvLoadDataListBySceneDataId (Integer pk);
 }

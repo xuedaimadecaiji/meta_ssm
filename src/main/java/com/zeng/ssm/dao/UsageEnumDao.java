@@ -6,6 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 
 @Mapper
-public interface UsageEnumDao extends ModelDao<UsageEnum, Integer> {
+public interface UsageEnumDao extends ModelDao{
 
 }

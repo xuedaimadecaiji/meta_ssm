@@ -5,5 +5,5 @@ import com.zeng.ssm.model.Device;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface DeviceDao extends ModelDao<Device, Integer> {
+public interface DeviceDao extends ModelDao{
 }

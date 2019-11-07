@@ -1,6 +1,8 @@
 package com.zeng.ssm.model;
 
-public class Safety {
+import com.zeng.ssm.common.Model;
+
+public class Safety implements Model {
 
     private int id;
     private String title;

@@ -1,13 +1,14 @@
 package com.zeng.ssm.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zeng.ssm.common.Model;
 import com.zeng.ssm.common.Searchable;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
 
-public class SceneData extends Searchable {
+public class SceneData extends Searchable implements Model {
 
     private Integer id;
     private Integer categoryId;

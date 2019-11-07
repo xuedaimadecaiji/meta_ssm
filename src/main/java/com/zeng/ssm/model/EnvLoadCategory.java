@@ -1,6 +1,8 @@
 package com.zeng.ssm.model;
 
-public class EnvLoadCategory {
+import com.zeng.ssm.common.Model;
+
+public class EnvLoadCategory implements Model {
     private Integer id;
     private String title;
 

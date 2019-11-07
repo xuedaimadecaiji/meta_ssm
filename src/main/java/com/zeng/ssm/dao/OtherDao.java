@@ -5,5 +5,5 @@ import com.zeng.ssm.model.Other;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface OtherDao extends ModelDao<Other, Integer> {
+public interface OtherDao extends ModelDao{
 }

@@ -2,21 +2,23 @@ package com.zeng.ssm.common;
 
 import java.util.List;
 
-public interface ModelDao<T, KEY> {
-    int deleteByPrimaryKey(KEY pk);
+public interface ModelDao {
+    int deleteByPrimaryKey(Integer pk);
 
-    int insert(T record);
-    int insert(List<T> records);
+    int insert(Model record);
+    int insert(List<Model> records);
 
-    int insertSelective(T record);
+    int insertSelective(Model record);
 
-    List<T> selectByContent(String content);
+    List<Model> selectByContent(String content);
 
-    List<T> selectAll();
+    List<Model> selectAll();
 
-    T selectByPrimaryKey(KEY pk);
+    Model selectByPrimaryKey(Integer pk);
 
-    int updateByPrimaryKeySelective(T record);
+    int updateByPrimaryKeySelective(Model record);
 
-    int updateByPrimaryKey(T record);
+    int updateByPrimaryKey(Model record);
+
+    void setTableName(String tableName);
 }

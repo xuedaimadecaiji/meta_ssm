@@ -5,5 +5,5 @@ import com.zeng.ssm.model.Permission;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface PermissionDao extends ModelDao<Permission, Integer> {
+public interface PermissionDao extends ModelDao{
 }

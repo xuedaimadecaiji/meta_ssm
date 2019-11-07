@@ -1,6 +1,8 @@
 package com.zeng.ssm.model;
 
-public class MaterialDataCategory {
+import com.zeng.ssm.common.Model;
+
+public class MaterialDataCategory  implements Model {
 
     private int id;
     private String title;

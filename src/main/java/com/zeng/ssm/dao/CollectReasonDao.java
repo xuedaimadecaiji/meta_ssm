@@ -5,5 +5,5 @@ import com.zeng.ssm.model.CollectReason;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface CollectReasonDao extends ModelDao<CollectReason, Integer> {
+public interface CollectReasonDao extends ModelDao{
 }

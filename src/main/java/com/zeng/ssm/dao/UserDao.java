@@ -5,6 +5,6 @@ import com.zeng.ssm.model.User;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface UserDao extends ModelDao<User, Integer> {
+public interface UserDao extends ModelDao{
 
 }

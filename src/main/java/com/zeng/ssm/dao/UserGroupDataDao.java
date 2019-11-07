@@ -7,6 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface UserGroupDataDao extends ModelDao<UserGroupData, Integer> {
+public interface UserGroupDataDao extends ModelDao{
     List<UserGroupData> selectListByUserId (Integer userId);
 }

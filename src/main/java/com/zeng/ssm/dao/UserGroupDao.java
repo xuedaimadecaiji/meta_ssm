@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface UserGroupDao extends ModelDao<UserGroup, Integer> {
+public interface UserGroupDao extends ModelDao{
 
     /**
      * 查找userId创建的所有组

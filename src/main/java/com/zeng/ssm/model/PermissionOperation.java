@@ -1,6 +1,8 @@
 package com.zeng.ssm.model;
 
-public class PermissionOperation {
+import com.zeng.ssm.common.Model;
+
+public class PermissionOperation implements Model {
 
     private Integer id;
     private String title;

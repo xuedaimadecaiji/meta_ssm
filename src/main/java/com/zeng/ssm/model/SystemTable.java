@@ -1,8 +1,10 @@
 package com.zeng.ssm.model;
 
+import com.zeng.ssm.common.Model;
+
 import java.util.List;
 
-public class SystemTable {
+public class SystemTable implements Model {
 
     private String tableName;
     private String tableComment;

@@ -1,6 +1,8 @@
 package com.zeng.ssm.model;
 
-public class EnergyCategory {
+import com.zeng.ssm.common.Model;
+
+public class EnergyCategory implements Model {
 
     private int id;
     private String title;

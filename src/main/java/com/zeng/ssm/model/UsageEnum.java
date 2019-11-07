@@ -1,6 +1,8 @@
 package com.zeng.ssm.model;
 
-public class UsageEnum {
+import com.zeng.ssm.common.Model;
+
+public class UsageEnum  implements Model {
 
     private Integer id;
     private String title;

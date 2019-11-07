@@ -1,9 +1,11 @@
 package com.zeng.ssm.model;
 
+import com.zeng.ssm.common.Model;
+
 /**
  * 单位表
  */
-public class Unit {
+public class Unit implements Model {
     private Integer id;
     private String title;
 

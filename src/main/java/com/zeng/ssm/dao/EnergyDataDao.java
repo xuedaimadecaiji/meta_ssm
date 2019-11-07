@@ -7,6 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface EnergyDataDao extends ModelDao<EnergyData, Integer> {
+public interface EnergyDataDao extends ModelDao{
     List<EnergyData> selectEnergyDataListBySceneDataId (Integer pk);
 }
