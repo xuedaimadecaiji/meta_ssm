@@ -16,15 +16,15 @@
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        SELECT * from `device` where id = #{pk};
+        SELECT * from ${tableName} where id = #{pk};
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * from `device`;
+        SELECT * from ${tableName};
     </select>
 
     <select id="selectByContent" parameterType="java.lang.String" resultMap="BaseResultMap">
-        SELECT * from `device`
+        SELECT * from ${tableName}
         <if test="content != null">
             where title like '%${content}%'
         </if>
