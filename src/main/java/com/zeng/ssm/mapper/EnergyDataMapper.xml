@@ -17,21 +17,32 @@
     </sql>
 
     <insert id="insert" parameterType="com.zeng.ssm.model.EnergyData" useGeneratedKeys="true" keyProperty="record.id" >
-        insert into energy_data (id, scene_data_id, `energy_id`, `unit_id`, `value`)
+        insert into ${tableName} (id, scene_data_id, `energy_id`, `unit_id`, `value`,)
         values (#{record.id,jdbcType=INTEGER}, #{record.sceneDataId,jdbcType=INTEGER}, #{record.energyId,jdbcType=INTEGER},
         #{record.unitId,jdbcType=INTEGER}, #{record.value, jdbcType=VARCHAR})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        SELECT * from `energy_data` where id = #{pk};
+        SELECT * from ${tableName} where id = #{pk};
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * from `energy_data`;
+        SELECT * from ${tableName};
     </select>
 
     <select id="selectEnergyDataListBySceneDataId" resultMap="BaseResultMap">
-        select * from `energy_data` where scene_data_id = #{pk}
+        select * from ${tableName} where scene_data_id = #{pk}
     </select>
+
+    <update id="updateByPrimaryKey" parameterType="com.zeng.ssm.model.EnergyData">
+        update ${tableName}
+        set
+          `value` = #{record.value,jdbcType=VARCHAR}
+        where id = #{record.id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+      delete from ${tableName} where id = #{pk,jdbcType=INTEGER}
+    </delete>
 
 </mapper>

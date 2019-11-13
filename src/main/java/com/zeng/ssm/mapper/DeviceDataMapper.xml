@@ -14,21 +14,35 @@
         id, scene_data_id, device_id
     </sql>
     <insert id="insert" parameterType="com.zeng.ssm.model.DeviceData" useGeneratedKeys="true" keyProperty="record.id" >
-        insert into `device_data` (id, scene_data_id, `device_id`, `work_time`)
+        insert into ${tableName} (id, scene_data_id, `device_id`, `work_time`)
         values (#{record.id,jdbcType=INTEGER}, #{record.sceneDataId,jdbcType=INTEGER}, #{record.deviceId,jdbcType=INTEGER}, #{
         record.workTime,jdbcType=VARCHAR})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        SELECT * from `device_data` where id = #{pk};
+        SELECT * from ${tableName} where id = #{pk};
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * from `device_data`;
+        SELECT * from ${tableName};
     </select>
 
     <select id="selectDeviceDataListBySceneDataId" resultMap="BaseResultMap">
-        select * from `device_data` where scene_data_id = #{pk}
+        select * from ${tableName} where scene_data_id = #{pk}
     </select>
+
+    <update id="updateByPrimaryKey" parameterType="com.zeng.ssm.model.DeviceData">
+        update ${tableName}
+        set
+          `type` = #{record.type,jdbcType=VARCHAR},
+          `power` = #{record.power,jdbcType=VARCHAR},
+          `title` = #{record.title,jdbcType=VARCHAR},
+          `description` = #{record.description,jdbcType=VARCHAR}
+        where id = #{record.id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+      delete from ${tableName} where id = #{pk,jdbcType=INTEGER}
+    </delete>
 
 </mapper>

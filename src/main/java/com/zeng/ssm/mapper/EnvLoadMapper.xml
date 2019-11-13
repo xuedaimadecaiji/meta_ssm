@@ -7,24 +7,38 @@
         <association property="envLoadCategory" column="category_id" select="com.zeng.ssm.dao.EnvLoadCategoryDao.selectByPrimaryKey"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.Process" useGeneratedKeys="true" keyProperty="record.id" >
-        insert into `env_load` (id, scene_id, `title`, `description`)
+    <insert id="insert" parameterType="com.zeng.ssm.model.EnvLoad" useGeneratedKeys="true" keyProperty="record.id" >
+        insert into ${tableName} (id, scene_id, `title`, `description`)
         values (#{record.id,jdbcType=INTEGER}, #{record.sceneId,jdbcType=INTEGER}, #{record.title,jdbcType=VARCHAR}, #{record.description,jdbcType=VARCHAR})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        SELECT * from `env_load` where id = #{pk};
+        SELECT * from ${tableName} where id = #{pk};
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * from `env_load`;
+        SELECT * from ${tableName};
     </select>
 
     <select id="selectByContent" parameterType="java.lang.String" resultMap="BaseResultMap">
-        SELECT * from `env_load`
+        SELECT * from ${tableName}
         <if test="content != null">
             where title like '%${content}%'
         </if>
         ;
     </select>
+
+    <update id="updateByPrimaryKey" parameterType="com.zeng.ssm.model.EnvLoad">
+        update ${tableName}
+        set
+          `type` = #{record.type,jdbcType=VARCHAR},
+          `power` = #{record.power,jdbcType=VARCHAR},
+          `title` = #{record.title,jdbcType=VARCHAR},
+          `description` = #{record.description,jdbcType=VARCHAR}
+        where id = #{record.id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+      delete from ${tableName} where id = #{pk,jdbcType=INTEGER}
+    </delete>
 </mapper>
