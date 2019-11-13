@@ -10,9 +10,9 @@
         <association property="permission" column="permission_id" select="com.zeng.ssm.dao.PermissionDao.selectByPrimaryKey"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.PermissionData" useGeneratedKeys="true" keyProperty="id" >
+    <insert id="insert" parameterType="com.zeng.ssm.model.PermissionData" useGeneratedKeys="true" keyProperty="record.id" >
         insert into `user_group_permission_data` (id, user_group_id, `permission_id`)
-        values (#{id,jdbcType=INTEGER}, #{userGroupId,jdbcType=INTEGER}, #{permissionId,jdbcType=INTEGER})
+        values (#{record.id,jdbcType=INTEGER}, #{record.userGroupId,jdbcType=INTEGER}, #{record.permissionId,jdbcType=INTEGER})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">

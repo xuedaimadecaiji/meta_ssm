@@ -32,10 +32,10 @@
                     javaType="java.util.ArrayList" select="com.zeng.ssm.dao.EnvLoadDataDao.selectEnvLoadDataListBySceneDataId"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.SceneData" useGeneratedKeys="true" keyProperty="id" >
+    <insert id="insert" parameterType="com.zeng.ssm.model.SceneData" useGeneratedKeys="true" keyProperty="record.id" >
         insert into scene_data (`category_id`,`category_root_id`, `title`, `description`)
-        values (#{categoryId,jdbcType=INTEGER},#{categoryRootId,jdbcType=INTEGER},#{title,jdbcType=VARCHAR},
-        #{description,jdbcType=VARCHAR})
+        values (#{record.categoryId,jdbcType=INTEGER},#{record.categoryRootId,jdbcType=INTEGER},#{record.title,jdbcType=VARCHAR},
+        #{record.description,jdbcType=VARCHAR})
     </insert>
 
     <select id="selectByContent" parameterType="java.lang.String" resultMap="SimpleResultMap">
@@ -48,9 +48,9 @@
 
     <select id="selectAll" parameterType="int" resultMap="BaseResultMap">
         SELECT * from `scene_data`
-        <if test="categoryRootId != null">
-        where category_root_id = #{categoryRootId}
-        </if>
+<!--        <if test="categoryRootId != null">-->
+<!--        where category_root_id = #{categoryRootId}-->
+<!--        </if>-->
         ;
     </select>
 
@@ -60,12 +60,12 @@
 
     <update id="updateByPrimaryKey" parameterType="com.zeng.ssm.model.SceneData">
         update scene_data
-        set id = #{id,jdbcType=INTEGER},
-          category_id = #{categoryId,jdbcType=INTEGER},
-          category_root_id = #{categoryRootId,jdbcType=INTEGER},
-          `title` = #{title,jdbcType=VARCHAR},
-          `description` = #{description,jdbcType=VARCHAR}
-        where id = #{id,jdbcType=INTEGER}
+        set id = #{record.id,jdbcType=INTEGER},
+          category_id = #{record.categoryId,jdbcType=INTEGER},
+          category_root_id = #{record.categoryRootId,jdbcType=INTEGER},
+          `title` = #{record.title,jdbcType=VARCHAR},
+          `description` = #{record.description,jdbcType=VARCHAR}
+        where id = #{record.id,jdbcType=INTEGER}
     </update>
 
 </mapper>

@@ -13,9 +13,10 @@
     <sql id="Base_Column_List">
         id, scene_data_id, device_id
     </sql>
-    <insert id="insert" parameterType="com.zeng.ssm.model.DeviceData" useGeneratedKeys="true" keyProperty="id" >
+    <insert id="insert" parameterType="com.zeng.ssm.model.DeviceData" useGeneratedKeys="true" keyProperty="record.id" >
         insert into `device_data` (id, scene_data_id, `device_id`, `work_time`)
-        values (#{id,jdbcType=INTEGER}, #{sceneDataId,jdbcType=INTEGER}, #{deviceId,jdbcType=INTEGER}, #{workTime,jdbcType=VARCHAR})
+        values (#{record.id,jdbcType=INTEGER}, #{record.sceneDataId,jdbcType=INTEGER}, #{record.deviceId,jdbcType=INTEGER}, #{
+        record.workTime,jdbcType=VARCHAR})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">

@@ -10,9 +10,9 @@
         <association property="userGroup" column="user_group_id" select="com.zeng.ssm.dao.UserGroupDao.selectByPrimaryKey"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.UserGroupData" useGeneratedKeys="true" keyProperty="id" >
+    <insert id="insert" parameterType="com.zeng.ssm.model.UserGroupData" useGeneratedKeys="true" keyProperty="record.id" >
         insert into `user_group_data` (id, user_id, `user_group_id`)
-        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userGroupId,jdbcType=INTEGER})
+        values (#{record.id,jdbcType=INTEGER}, #{record.userId,jdbcType=INTEGER}, #{record.userGroupId,jdbcType=INTEGER})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">

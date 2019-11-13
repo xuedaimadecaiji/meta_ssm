@@ -26,7 +26,7 @@
     </select>
 
     <select id="selectCategoriesByCategoryId" resultMap="TreeResultMap" parameterType="java.lang.Integer">
-        select t.id, t.title, t.parent_id from category t where parent_id = #{id}
+        select t.id, t.title, t.parent_id from category t where parent_id = #{record.id}
     </select>
 
     <resultMap id="SimpleResultMap" type="com.zeng.ssm.model.Category">
@@ -43,18 +43,18 @@
 
     <insert id="insert" parameterType="com.zeng.ssm.model.Category">
         insert into category (parent_id, `title`)
-        values (#{parentId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR})
+        values (#{record.parentId,jdbcType=INTEGER}, #{record.title,jdbcType=VARCHAR})
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="com.zeng.ssm.model.Category">
         update category
         set
-          parent_id = #{parentId,jdbcType=INTEGER},
-          `title` = #{title,jdbcType=VARCHAR}
-        where id = #{id,jdbcType=INTEGER}
+          parent_id = #{record.parentId,jdbcType=INTEGER},
+          `title` = #{record.title,jdbcType=VARCHAR}
+        where id = #{record.id,jdbcType=INTEGER}
     </update>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-      delete from `category` where id = #{id,jdbcType=INTEGER}
+      delete from `category` where id = #{record.id,jdbcType=INTEGER}
     </delete>
 </mapper>

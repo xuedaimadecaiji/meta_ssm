@@ -12,10 +12,10 @@
                      select="com.zeng.ssm.dao.PermissionOperationDao.selectByPrimaryKey"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.Permission" useGeneratedKeys="true" keyProperty="id" >
+    <insert id="insert" parameterType="com.zeng.ssm.model.Permission" useGeneratedKeys="true" keyProperty="record.id" >
         insert into `permission` (id, permission_operation_id, title, `category_id`, `description`)
-        values (#{id,jdbcType=INTEGER}, #{permissionOperationId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
-        #{categoryId,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR})
+        values (#{record.id,jdbcType=INTEGER}, #{record.permissionOperationId,jdbcType=INTEGER}, #{record.title,jdbcType=VARCHAR},
+        #{record.categoryId,jdbcType=INTEGER}, #{record.description,jdbcType=VARCHAR})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">

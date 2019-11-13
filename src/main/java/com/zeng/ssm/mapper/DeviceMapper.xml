@@ -9,9 +9,10 @@
         <result column="description" jdbcType="VARCHAR" property="description" />
     </resultMap>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.Process" useGeneratedKeys="true" keyProperty="id" >
-        insert into device (id, scene_id, `title`, `description`)
-        values (#{id,jdbcType=INTEGER}, #{sceneId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
+    <insert id="insert" parameterType="com.zeng.ssm.model.Device" useGeneratedKeys="true" keyProperty="record.id" >
+        insert into  ${tableName} ( `title`, `type`, `power`, `description`)
+        values ( #{record.title,jdbcType=VARCHAR}, #{record.type,jdbcType=VARCHAR},
+         #{record.power,jdbcType=VARCHAR}, #{record.description,jdbcType=VARCHAR})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
@@ -29,4 +30,18 @@
         </if>
         ;
     </select>
+
+    <update id="updateByPrimaryKey" parameterType="com.zeng.ssm.model.Device">
+        update ${tableName}
+        set
+          `type` = #{record.type,jdbcType=VARCHAR},
+          `power` = #{record.power,jdbcType=VARCHAR},
+          `title` = #{record.title,jdbcType=VARCHAR},
+          `description` = #{record.description,jdbcType=VARCHAR}
+        where id = #{record.id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+      delete from ${tableName} where id = #{pk,jdbcType=INTEGER}
+    </delete>
 </mapper>

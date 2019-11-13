@@ -2,6 +2,7 @@ package com.zeng.ssm.controller;
 
 import com.zeng.ssm.common.Model;
 import com.zeng.ssm.common.ModelDao;
+import com.zeng.ssm.common.ModelHandler;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,31 +20,28 @@ public class ManageController{
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Model> getList(@PathVariable String tableName) {
-        this.modelDao.setTableName(tableName);
-        return this.modelDao.selectAll();
+        return this.modelDao.selectAll(tableName);
     }
 
     @RequestMapping(value = "/{pk}", method = RequestMethod.GET)
     public Model get(@PathVariable String tableName, @PathVariable Integer pk){
-        this.modelDao.setTableName(tableName);
-        return this.modelDao.selectByPrimaryKey(pk);
+        return this.modelDao.selectByPrimaryKey(tableName, pk);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public int post(@PathVariable String tableName, @RequestBody Model record){
-        this.modelDao.setTableName(tableName);
-        return this.modelDao.insert(record);
+    public int post(@PathVariable String tableName, @RequestBody String record){
+        Model model = ModelHandler.makeModel(tableName, record);
+        return this.modelDao.insert(tableName, model);
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
-    public  int put(@PathVariable String tableName, @RequestBody Model record){
-        this.modelDao.setTableName(tableName);
-        return this.modelDao.updateByPrimaryKey(record);
+    public int put(@PathVariable String tableName, @RequestBody String record){
+        Model model = ModelHandler.makeModel(tableName, record);
+        return this.modelDao.updateByPrimaryKey(tableName, model);
     }
 
     @RequestMapping(value = "/{pk}", method = RequestMethod.DELETE)
     public  int delete(@PathVariable String tableName, @PathVariable Integer pk){
-        this.modelDao.setTableName(tableName);
-        return this.modelDao.deleteByPrimaryKey(pk);
+        return this.modelDao.deleteByPrimaryKey(tableName, pk);
     }
 }

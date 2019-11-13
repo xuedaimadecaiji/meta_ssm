@@ -21,9 +21,9 @@
                     javaType="java.util.ArrayList" select="com.zeng.ssm.dao.UserGroupDataDao.selectListByUserId"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.User" useGeneratedKeys="true" keyProperty="id" >
+    <insert id="insert" parameterType="com.zeng.ssm.model.User" useGeneratedKeys="true" keyProperty="record.id" >
         insert into `user` (id, username, `email`, `password`)
-        values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
+        values (#{record.id,jdbcType=INTEGER}, #{record.username,jdbcType=VARCHAR}, #{record.email,jdbcType=VARCHAR}, #{record.password,jdbcType=VARCHAR})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">

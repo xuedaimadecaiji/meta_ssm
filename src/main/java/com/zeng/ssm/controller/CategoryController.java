@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @EnableAutoConfiguration
 @RequestMapping("/api/manage/categories")
-public class CategoryController extends AbstractController<Model, Integer> {
+public class CategoryController{
 
     @Resource
     CategoryDao categoryDao;
@@ -22,37 +22,5 @@ public class CategoryController extends AbstractController<Model, Integer> {
     @RequestMapping("/tree")
     public List<Category> getTree() {
         return this.categoryDao.selectCategoryTree();
-    }
-
-    @RequestMapping("")
-    @Override
-    public List<Model> getList() {
-        return this.categoryDao.selectAll();
-    }
-
-    @RequestMapping("/{pk}")
-    @Override
-    public Model get(@PathVariable Integer pk) {
-        return this.categoryDao.selectByPrimaryKey(pk);
-    }
-
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    @ResponseBody
-    @Override
-    public int post(@RequestBody Model record) {
-        return this.categoryDao.insert(record);
-    }
-
-    @RequestMapping(value = "", method = RequestMethod.PUT)
-    @ResponseBody
-    @Override
-    public int put(@RequestBody Model record) {
-        return this.categoryDao.updateByPrimaryKey(record);
-    }
-
-    @RequestMapping(value = "/{pk}", method = RequestMethod.DELETE)
-    @Override
-    public int delete(@PathVariable Integer pk) {
-        return this.categoryDao.deleteByPrimaryKey(pk);
     }
 }

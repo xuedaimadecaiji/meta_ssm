@@ -16,10 +16,10 @@
     <sql id="Base_Column_List">
         id, scene_data_id, env_load_id
     </sql>
-    <insert id="insert" parameterType="com.zeng.ssm.model.Process" useGeneratedKeys="true" keyProperty="id" >
+    <insert id="insert" parameterType="com.zeng.ssm.model.Process" useGeneratedKeys="true" keyProperty="record.id" >
         insert into `env_load_data` (id, scene_data_id, `env_load_id`, `unit_id`, `value`, `description`)
-        values (#{id,jdbcType=INTEGER}, #{sceneDataId,jdbcType=INTEGER}, #{envLoadId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER},
-         #{value,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR})
+        values (#{record.id,jdbcType=INTEGER}, #{record.sceneDataId,jdbcType=INTEGER}, #{record.envLoadId,jdbcType=INTEGER}, #{record.unitId,jdbcType=INTEGER},
+         #{record.value,jdbcType=VARCHAR},#{record.description,jdbcType=VARCHAR})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">

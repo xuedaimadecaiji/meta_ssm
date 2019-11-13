@@ -3,22 +3,20 @@ package com.zeng.ssm.common;
 import java.util.List;
 
 public interface ModelDao {
-    int deleteByPrimaryKey(Integer pk);
+    int deleteByPrimaryKey(String tableName, Integer pk);
 
-    int insert(Model record);
-    int insert(List<Model> records);
+    int insert(String tableName, Model record);
+    int insert(String tableName, List<Model> records);
 
-    int insertSelective(Model record);
+    int insertSelective(String tableName, Model record);
 
-    List<Model> selectByContent(String content);
+    List<Model> selectByContent(String tableName, String content);
 
-    List<Model> selectAll();
+    List<Model> selectAll(String tableName);
 
-    Model selectByPrimaryKey(Integer pk);
+    Model selectByPrimaryKey(String tableName, Integer pk);
 
-    int updateByPrimaryKeySelective(Model record);
+    int updateByPrimaryKeySelective(String tableName, Model record);
 
-    int updateByPrimaryKey(Model record);
-
-    void setTableName(String tableName);
+    int updateByPrimaryKey(String tableName, Model record);
 }

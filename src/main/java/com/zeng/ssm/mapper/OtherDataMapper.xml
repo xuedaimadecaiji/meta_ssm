@@ -16,10 +16,10 @@
         id, scene_data_id, other_id
     </sql>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.ParameterData" useGeneratedKeys="true" keyProperty="id" >
+    <insert id="insert" parameterType="com.zeng.ssm.model.ParameterData" useGeneratedKeys="true" keyProperty="record.id" >
         insert into other_data (id, scene_data_id, `parameter_id`, `unit_id`, `value`)
-        values (#{id,jdbcType=INTEGER}, #{sceneDataId,jdbcType=INTEGER}, #{parameterId,jdbcType=INTEGER},
-        #{unitId,jdbcType=INTEGER}, #{value, jdbcType=VARCHAR})
+        values (#{record.id,jdbcType=INTEGER}, #{record.sceneDataId,jdbcType=INTEGER}, #{record.parameterId,jdbcType=INTEGER},
+        #{record.unitId,jdbcType=INTEGER}, #{record.value, jdbcType=VARCHAR})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
