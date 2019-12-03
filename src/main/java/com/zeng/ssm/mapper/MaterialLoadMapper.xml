@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zeng.ssm.dao.MaterialLoadDao">
+    <resultMap id="BaseResultMap" type="com.zeng.ssm.model.MaterialLoad">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="materialId" jdbcType="INTEGER" property="materialId" />
+        <result column="envLoadId" jdbcType="INTEGER" property="envLoadId" />
+        <result column="createdAt" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="updatedAt" jdbcType="TIMESTAMP" property="updatedAt" />
+        <result column="unitId" jdbcType="INTEGER" property="unitId" />
+        <result column="value" jdbcType="VARCHAR" property="value" />
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="deviceId" jdbcType="INTEGER" property="deviceId" />
+        <result column="collectReasonId" jdbcType="INTEGER" property="collectReasonId" />
+        <result column="monitorRangeId" jdbcType="INTEGER" property="monitorRangeId" />
+        <result column="frequency" jdbcType="VARCHAR" property="frequency"/>
+        <result column="location" jdbcType="VARCHAR" property="location"/>
+        <result column="collectMethodId" jdbcType="INTEGER" property="collectMethodId" />
+        <result column="time" jdbcType="VARCHAR" property="time"/>
+        <result column="reliability" jdbcType="VARCHAR" property="reliability" />
+        <result column="calculateMethodId" jdbcType="INTEGER" property="calculateMethodId" />
+        <result column="treatment" jdbcType="VARCHAR" property="treatment"/>
+        <result column="monitorMethodId" jdbcType="INTEGER" property="monitorMethodId" />
+        <result column="collectProblemId" jdbcType="INTEGER" property="collectProblemId" />
+        <result column="dataSourceId" jdbcType="INTEGER" property="dataSourceId" />
+
+        <association property="material" column="materialId" select="com.zeng.ssm.dao.SceneDataDao.selectByPrimaryKey"/>
+        <association property="envLoad" column="envLoadId" select="com.zeng.ssm.dao.EnvLoadDao.selectByPrimaryKey"/>
+        <association property="unit" column="unitId" select="com.zeng.ssm.dao.UnitDao.selectByPrimaryKey"/>
+        <association property="device" column="deviceId" select="com.zeng.ssm.dao.DeviceDao.selectByPrimaryKey"/>
+        <association property="collectReason" column="collectReasonId" select="com.zeng.ssm.dao.CollectReasonDao.selectByPrimaryKey"/>
+        <association property="monitorRange" column="monitorRangeId" select="com.zeng.ssm.dao.MonitorRangeDao.selectByPrimaryKey"/>
+        <association property="collectMethod" column="collectMethodId" select="com.zeng.ssm.dao.CollectMethodDao.selectByPrimaryKey"/>
+        <association property="calculateMethod" column="calculateMethodId" select="com.zeng.ssm.dao.CalculateMethodDao.selectByPrimaryKey"/>
+        <association property="monitorMethod" column="monitorMethodId" select="com.zeng.ssm.dao.MonitorMethodDao.selectByPrimaryKey"/>
+        <association property="collectProblem" column="collectProblemId" select="com.zeng.ssm.dao.CollectProblemDao.selectByPrimaryKey"/>
+        <association property="dataSource" column="dataSourceId" select="com.zeng.ssm.dao.DataSourceDao.selectByPrimaryKey"/>
+    </resultMap>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT * from `material_load` where id = #{pk};
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT * from `material_load`;
+    </select>
+
+    <select id="selectMaterialLoadListByMaterialId" resultMap="BaseResultMap">
+        SELECT * from `material_load` where materialId = #{pk};
+    </select>
+
+</mapper>
