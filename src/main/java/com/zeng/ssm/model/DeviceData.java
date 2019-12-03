@@ -1,14 +1,13 @@
 package com.zeng.ssm.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zeng.ssm.common.Model;
+import com.zeng.ssm.common.AbstractModel;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class DeviceData implements Model {
+public class DeviceData extends AbstractModel {
 
-    private Integer id;
     private Integer sceneDataId;
     private Integer deviceId;
     private Device device;
@@ -19,14 +18,7 @@ public class DeviceData implements Model {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date updatedAt;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private SceneData sceneData;
 
     public Integer getSceneDataId() {
         return sceneDataId;
@@ -74,5 +66,13 @@ public class DeviceData implements Model {
 
     public void setWorkTime(String workTime) {
         this.workTime = workTime;
+    }
+
+    public SceneData getSceneData() {
+        return sceneData;
+    }
+
+    public void setSceneData(SceneData sceneData) {
+        this.sceneData = sceneData;
     }
 }

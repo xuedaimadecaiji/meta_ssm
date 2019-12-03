@@ -1,19 +1,10 @@
 package com.zeng.ssm.model;
 
-import com.zeng.ssm.common.Model;
+import com.zeng.ssm.common.AbstractModel;
 
-public class CalculateMethod implements Model {
+public class CalculateMethod extends AbstractModel {
 
-    private int id;
     private String title;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;

@@ -7,24 +7,25 @@
         <result column="type" jdbcType="VARCHAR" property="type" />
         <result column="power" jdbcType="VARCHAR" property="power" />
         <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="usage" jdbcType="VARCHAR" property="usage"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.Device" useGeneratedKeys="true" keyProperty="record.id" >
-        insert into  ${tableName} ( `title`, `type`, `power`, `description`)
-        values ( #{record.title,jdbcType=VARCHAR}, #{record.type,jdbcType=VARCHAR},
-         #{record.power,jdbcType=VARCHAR}, #{record.description,jdbcType=VARCHAR})
+    <insert id="insert" parameterType="com.zeng.ssm.model.Device" useGeneratedKeys="true" keyProperty="id" >
+        insert into  `device` ( `title`, `type`, `power`, `description`,`usage`)
+        values ( #{title,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
+         #{power,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},#{usage,jdbcType=VARCHAR})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        SELECT * from ${tableName} where id = #{pk};
+        SELECT * from `device` where id = #{pk};
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * from ${tableName};
+        SELECT * from `device`;
     </select>
 
     <select id="selectByContent" parameterType="java.lang.String" resultMap="BaseResultMap">
-        SELECT * from ${tableName}
+        SELECT * from `device`
         <if test="content != null">
             where title like '%${content}%'
         </if>
@@ -32,16 +33,17 @@
     </select>
 
     <update id="updateByPrimaryKey" parameterType="com.zeng.ssm.model.Device">
-        update ${tableName}
+        update `device`
         set
-          `type` = #{record.type,jdbcType=VARCHAR},
-          `power` = #{record.power,jdbcType=VARCHAR},
-          `title` = #{record.title,jdbcType=VARCHAR},
-          `description` = #{record.description,jdbcType=VARCHAR}
-        where id = #{record.id,jdbcType=INTEGER}
+          `type` = #{type,jdbcType=VARCHAR},
+          `power` = #{power,jdbcType=VARCHAR},
+          `title` = #{title,jdbcType=VARCHAR},
+          `description` = #{description,jdbcType=VARCHAR},
+          `usage` = #{usage,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
     </update>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-      delete from ${tableName} where id = #{pk,jdbcType=INTEGER}
+      delete from `device` where id = #{pk,jdbcType=INTEGER}
     </delete>
 </mapper>

@@ -1,21 +1,22 @@
 package com.zeng.ssm.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zeng.ssm.common.Model;
+import com.zeng.ssm.common.AbstractModel;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class EnvLoadData implements Model {
+public class EnvLoadData extends  AbstractModel {
 
-    private Integer id;
     private Integer sceneDataId;
+    private SceneData sceneData;
     private Integer envLoadId;
+    private EnvLoad envLoad;
     private Integer unitId;
+    private Unit unit;
     private String value;
     private String description;
-    private Unit unit;
-    private EnvLoad envLoad;
+
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
@@ -35,6 +36,92 @@ public class EnvLoadData implements Model {
     private CollectMethod collectMethod;
     private String time;
     private String reliability;
+    private int calculateMethodId;
+    private CalculateMethod calculateMethod;
+    private String treatment;
+    private int monitorMethodId;
+    private MonitorMethod monitorMethod;
+    private int collectProblemId;
+    private CollectProblem collectProblem;
+    private int dataSourceId;
+
+
+    public int getCalculateMethodId() {
+        return calculateMethodId;
+    }
+
+    public void setCalculateMethodId(int calculateMethodId) {
+        this.calculateMethodId = calculateMethodId;
+    }
+
+    public CalculateMethod getCalculateMethod() {
+        return calculateMethod;
+    }
+
+    public void setCalculateMethod(CalculateMethod calculateMethod) {
+        this.calculateMethod = calculateMethod;
+    }
+
+    public MonitorMethod getMonitorMethod() {
+        return monitorMethod;
+    }
+
+    public void setMonitorMethod(MonitorMethod monitorMethod) {
+        this.monitorMethod = monitorMethod;
+    }
+
+    public int getCollectProblemId() {
+        return collectProblemId;
+    }
+
+    public void setCollectProblemId(int collectProblemId) {
+        this.collectProblemId = collectProblemId;
+    }
+
+    public CollectProblem getCollectProblem() {
+        return collectProblem;
+    }
+
+    public void setCollectProblem(CollectProblem collectProblem) {
+        this.collectProblem = collectProblem;
+    }
+
+    public int getDataSourceId() {
+        return dataSourceId;
+    }
+
+    public void setDataSourceId(int dataSourceId) {
+        this.dataSourceId = dataSourceId;
+    }
+
+    public DataSource getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    private DataSource dataSource;
+
+
+    public int getMonitorMethodId() {
+        return monitorMethodId;
+    }
+
+    public void setMonitorMethodId(int monitorMethodId) {
+        this.monitorMethodId = monitorMethodId;
+    }
+
+
+
+    public String getTreatment() {
+        return treatment;
+    }
+
+    public void setTreatment(String treatment) {
+        this.treatment = treatment;
+    }
 
     public int getDeviceId() {
         return deviceId;
@@ -132,14 +219,6 @@ public class EnvLoadData implements Model {
         this.reliability = reliability;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public Integer getSceneDataId() {
         return sceneDataId;
     }
@@ -211,5 +290,13 @@ public class EnvLoadData implements Model {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public SceneData getSceneData() {
+        return sceneData;
+    }
+
+    public void setSceneData(SceneData sceneData) {
+        this.sceneData = sceneData;
     }
 }

@@ -4,6 +4,8 @@
     <resultMap id="BaseResultMap" type="com.zeng.ssm.model.Unit">
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="unitCategoryId" jdbcType="INTEGER" property="unitCategoryId" />
+        <association property="unitCategory" column="unitCategoryId" select="com.zeng.ssm.dao.UnitCategoryDao.selectByPrimaryKey"/>
     </resultMap>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">

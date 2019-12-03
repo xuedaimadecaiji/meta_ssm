@@ -1,6 +1,6 @@
 package com.zeng.ssm.common;
 
-public class Searchable {
+public class Searchable extends AbstractModel{
     private String modelTitle;
     private String modelName;
     private String modelType;

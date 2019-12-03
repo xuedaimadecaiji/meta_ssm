@@ -1,20 +1,11 @@
 package com.zeng.ssm.model;
 
-import com.zeng.ssm.common.Model;
+import com.zeng.ssm.common.AbstractModel;
 
-public class Safety implements Model {
+public class Safety extends  AbstractModel {
 
-    private int id;
     private String title;
     private String description;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;

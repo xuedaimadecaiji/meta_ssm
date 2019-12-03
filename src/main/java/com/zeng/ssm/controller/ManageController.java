@@ -1,8 +1,9 @@
 package com.zeng.ssm.controller;
 
-import com.zeng.ssm.common.Model;
+import com.zeng.ssm.common.AbstractModel;
 import com.zeng.ssm.common.ModelDao;
 import com.zeng.ssm.common.ModelHandler;
+import com.zeng.ssm.common.ModelImpl;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,29 +20,34 @@ public class ManageController{
     ModelDao modelDao;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Model> getList(@PathVariable String tableName) {
-        return this.modelDao.selectAll(tableName);
+    public List<AbstractModel> getList(@PathVariable String tableName) {
+        ModelImpl.setTableName(tableName);
+        return this.modelDao.selectAll();
     }
 
     @RequestMapping(value = "/{pk}", method = RequestMethod.GET)
-    public Model get(@PathVariable String tableName, @PathVariable Integer pk){
-        return this.modelDao.selectByPrimaryKey(tableName, pk);
+    public AbstractModel get(@PathVariable String tableName, @PathVariable Integer pk){
+        ModelImpl.setTableName(tableName);
+        return this.modelDao.selectByPrimaryKey(pk);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public int post(@PathVariable String tableName, @RequestBody String record){
-        Model model = ModelHandler.makeModel(tableName, record);
-        return this.modelDao.insert(tableName, model);
+        ModelImpl.setTableName(tableName);
+        AbstractModel model = ModelHandler.newModelInstance(tableName, record);
+        return this.modelDao.insert(model);
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public int put(@PathVariable String tableName, @RequestBody String record){
-        Model model = ModelHandler.makeModel(tableName, record);
-        return this.modelDao.updateByPrimaryKey(tableName, model);
+        ModelImpl.setTableName(tableName);
+        AbstractModel model = ModelHandler.newModelInstance(tableName, record);
+        return this.modelDao.updateByPrimaryKey(model);
     }
 
     @RequestMapping(value = "/{pk}", method = RequestMethod.DELETE)
     public  int delete(@PathVariable String tableName, @PathVariable Integer pk){
-        return this.modelDao.deleteByPrimaryKey(tableName, pk);
+        ModelImpl.setTableName(tableName);
+        return this.modelDao.deleteByPrimaryKey(pk);
     }
 }

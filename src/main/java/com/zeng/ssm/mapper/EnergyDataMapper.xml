@@ -3,46 +3,47 @@
 <mapper namespace="com.zeng.ssm.dao.EnergyDataDao">
     <resultMap id="BaseResultMap" type="com.zeng.ssm.model.EnergyData">
         <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="scene_data_id" jdbcType="INTEGER" property="sceneDataId" />
-        <result column="energy_id" jdbcType="INTEGER" property="energyId" />
-        <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+        <result column="sceneDataId" jdbcType="INTEGER" property="sceneDataId" />
+        <result column="energyId" jdbcType="INTEGER" property="energyId" />
+        <result column="unitId" jdbcType="INTEGER" property="unitId" />
+        <result column="deviceId" jdbcType="INTEGER" property="deviceId" />
         <result column="value" jdbcType="VARCHAR" property="value" />
-        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
-        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
-        <association property="energy" column="energy_id" select="com.zeng.ssm.dao.EnergyDao.selectByPrimaryKey"/>
-        <association property="unit" column="unit_id" select="com.zeng.ssm.dao.UnitDao.selectByPrimaryKey"/>
+        <result column="createdAt" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="updatedAt" jdbcType="TIMESTAMP" property="updatedAt" />
+        <result column="origin" jdbcType="VARCHAR" property="origin"/>
+        <association property="energy" column="energyId" select="com.zeng.ssm.dao.EnergyDao.selectByPrimaryKey"/>
+        <association property="unit" column="unitId" select="com.zeng.ssm.dao.UnitDao.selectByPrimaryKey"/>
+        <association property="sceneData" column="sceneDataId" select="com.zeng.ssm.dao.SceneDataDao.selectSimpleByPrimaryKey"/>
+        <association property="device" column="deviceId" select="com.zeng.ssm.dao.DeviceDao.selectByPrimaryKey"/>
     </resultMap>
-    <sql id="Base_Column_List">
-        id, scene_data_id, energy_id
-    </sql>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.EnergyData" useGeneratedKeys="true" keyProperty="record.id" >
-        insert into ${tableName} (id, scene_data_id, `energy_id`, `unit_id`, `value`,)
-        values (#{record.id,jdbcType=INTEGER}, #{record.sceneDataId,jdbcType=INTEGER}, #{record.energyId,jdbcType=INTEGER},
-        #{record.unitId,jdbcType=INTEGER}, #{record.value, jdbcType=VARCHAR})
+    <insert id="insert" parameterType="com.zeng.ssm.model.EnergyData" useGeneratedKeys="true" keyProperty="id" >
+        insert into `energy_data` (id, sceneDataId, `energyId`, `unitId`, `deviceId`,`value`,`origin`)
+        values (#{id,jdbcType=INTEGER}, #{sceneDataId,jdbcType=INTEGER}, #{energyId,jdbcType=INTEGER},
+        #{unitId,jdbcType=INTEGER},#{deviceId,jdbcType=INTEGER}, #{value, jdbcType=VARCHAR},#{origin=VARCHAR})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        SELECT * from ${tableName} where id = #{pk};
+        SELECT * from `energy_data` where id = #{pk};
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * from ${tableName};
+        SELECT * from `energy_data`;
     </select>
 
     <select id="selectEnergyDataListBySceneDataId" resultMap="BaseResultMap">
-        select * from ${tableName} where scene_data_id = #{pk}
+        select * from `energy_data` where sceneDataId = #{pk}
     </select>
 
     <update id="updateByPrimaryKey" parameterType="com.zeng.ssm.model.EnergyData">
-        update ${tableName}
+        update `energy_data`
         set
-          `value` = #{record.value,jdbcType=VARCHAR}
-        where id = #{record.id,jdbcType=INTEGER}
+          `value` = #{value,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
     </update>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-      delete from ${tableName} where id = #{pk,jdbcType=INTEGER}
+      delete from `energy_data` where id = #{pk,jdbcType=INTEGER}
     </delete>
 
 </mapper>

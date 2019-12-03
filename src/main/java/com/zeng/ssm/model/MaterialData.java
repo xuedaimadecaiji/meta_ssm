@@ -1,15 +1,15 @@
 package com.zeng.ssm.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zeng.ssm.common.Model;
+import com.zeng.ssm.common.AbstractModel;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class MaterialData implements Model {
+public class MaterialData extends AbstractModel {
 
-    private Integer id;
     private Integer sceneDataId;
+    private SceneData sceneData;
     private Integer materialId;
     private String value;
     private Integer unitId;
@@ -25,15 +25,15 @@ public class MaterialData implements Model {
     private String source;
     private String time;
     private String reliability;
-    private int materialDataCategoryId;
+    private Integer materialDataCategoryId;
     private MaterialDataCategory materialDataCategory;
 
-    public Integer getId() {
-        return id;
+    public SceneData getSceneData() {
+        return sceneData;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setSceneData(SceneData sceneData) {
+        this.sceneData = sceneData;
     }
 
     public Integer getSceneDataId() {
@@ -124,11 +124,11 @@ public class MaterialData implements Model {
         this.source = source;
     }
 
-    public int getMaterialDataCategoryId() {
+    public Integer getMaterialDataCategoryId() {
         return materialDataCategoryId;
     }
 
-    public void setMaterialDataCategoryId(int materialDataCategoryId) {
+    public void setMaterialDataCategoryId(Integer materialDataCategoryId) {
         this.materialDataCategoryId = materialDataCategoryId;
     }
 

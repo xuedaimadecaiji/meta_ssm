@@ -1,7 +1,7 @@
 package com.zeng.ssm.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zeng.ssm.common.Model;
+import com.zeng.ssm.common.AbstractModel;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -10,9 +10,8 @@ import java.util.List;
 /**
  * 用户组模型
  */
-public class UserGroup implements Model {
+public class UserGroup extends AbstractModel {
 
-    private Integer id;
     private Integer userId; // 创建该组的用户ID
     private String title;
     private String description;
@@ -24,15 +23,6 @@ public class UserGroup implements Model {
     private Date updatedAt;
 
     private List<PermissionData> permissionDataList;
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getUserId() {
         return userId;

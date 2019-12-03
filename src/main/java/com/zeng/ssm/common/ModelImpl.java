@@ -7,49 +7,65 @@ import java.util.List;
 @Service("modelDao")
 public class ModelImpl implements ModelDao{
 
-    @Override
-    public int deleteByPrimaryKey(String tableName, Integer pk) {
-        return ModelHandler.getModelDao(tableName).deleteByPrimaryKey(tableName, pk);
+    private static String tableName;
+
+    public static void setTableName(String tableName) {
+        ModelImpl.tableName = tableName;
     }
 
+    //根据id号删除数据
     @Override
-    public int insert(String tableName, Model record) {
-        return ModelHandler.getModelDao(tableName).insert(tableName, record);
+    public int deleteByPrimaryKey(Integer pk) {
+        return ModelHandler.getModelDaoInstance(tableName).deleteByPrimaryKey(pk);
     }
 
+    //新增数据
     @Override
-    public int insert(String tableName, List<Model> records) {
+    public int insert(AbstractModel record) {
+        ModelHandler.getModelDaoInstance(tableName).insert(record);
+        return record.getId();
+    }
+
+    //新增多条数据（传入的是一个list）
+    @Override
+    public int insert(List<AbstractModel> records) {
         return 0;
     }
 
+    //新增选择的数据
     @Override
-    public int insertSelective(String tableName, Model record) {
+    public int insertSelective(AbstractModel record) {
         return 0;
     }
 
+    //查找与参数相关的所有model
     @Override
-    public List<Model> selectByContent(String tableName, String content) {
+    public List<AbstractModel> selectByContent(String content) {
         return null;
     }
 
+    //查询某张表中的所有数据
     @Override
-    public List<Model> selectAll(String tableName) {
-        return ModelHandler.getModelDao(tableName).selectAll(tableName);
+    public List<AbstractModel> selectAll() {
+        return ModelHandler.getModelDaoInstance(tableName).selectAll();
     }
 
+    //按传进来的id号查询表中的数据
     @Override
-    public Model selectByPrimaryKey(String tableName, Integer pk) {
-        return ModelHandler.getModelDao(tableName).selectByPrimaryKey(tableName, pk);
+    public AbstractModel selectByPrimaryKey(Integer pk) {
+        return ModelHandler.getModelDaoInstance(tableName).selectByPrimaryKey(pk);
     }
 
+    //根据选中的id号更新数据
     @Override
-    public int updateByPrimaryKeySelective(String tableName, Model record) {
+    public int updateByPrimaryKeySelective(AbstractModel record) {
         return 0;
     }
 
+    //根据id号更新数据
     @Override
-    public int updateByPrimaryKey(String tableName, Model record) {
-        return ModelHandler.getModelDao(tableName).updateByPrimaryKey(tableName, record);
+    public int updateByPrimaryKey(AbstractModel record) {
+        return ModelHandler.getModelDaoInstance(tableName).updateByPrimaryKey(record);
     }
 
 

@@ -1,11 +1,9 @@
 package com.zeng.ssm.model;
 
-import com.zeng.ssm.common.Model;
 import com.zeng.ssm.common.Searchable;
 
-public class Device extends Searchable implements Model {
+public class Device extends Searchable{
 
-    private Integer id;
     private String title;
     private String type;
     private String power;
@@ -18,14 +16,6 @@ public class Device extends Searchable implements Model {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getType() {

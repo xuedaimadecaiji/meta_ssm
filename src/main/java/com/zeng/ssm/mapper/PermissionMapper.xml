@@ -3,19 +3,19 @@
 <mapper namespace="com.zeng.ssm.dao.PermissionDao">
     <resultMap id="BaseResultMap" type="com.zeng.ssm.model.Permission">
         <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="permission_operation_id" jdbcType="INTEGER" property="permissionOperationId" />
-        <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+        <result column="permissionOperationId" jdbcType="INTEGER" property="permissionOperationId" />
+        <result column="categoryId" jdbcType="INTEGER" property="categoryId" />
         <result column="title" jdbcType="VARCHAR" property="title" />
         <result column="description" jdbcType="VARCHAR" property="description" />
-        <association property="category" column="category_id" select="com.zeng.ssm.dao.CategoryDao.selectByPrimaryKey"/>
-        <association property="permissionOperation" column="permission_operation_id"
+        <association property="category" column="categoryId" select="com.zeng.ssm.dao.CategoryDao.selectByPrimaryKey"/>
+        <association property="permissionOperation" column="permissionOperationId"
                      select="com.zeng.ssm.dao.PermissionOperationDao.selectByPrimaryKey"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.Permission" useGeneratedKeys="true" keyProperty="record.id" >
-        insert into `permission` (id, permission_operation_id, title, `category_id`, `description`)
-        values (#{record.id,jdbcType=INTEGER}, #{record.permissionOperationId,jdbcType=INTEGER}, #{record.title,jdbcType=VARCHAR},
-        #{record.categoryId,jdbcType=INTEGER}, #{record.description,jdbcType=VARCHAR})
+    <insert id="insert" parameterType="com.zeng.ssm.model.Permission" useGeneratedKeys="true" keyProperty="id" >
+        insert into `permission` (id, permissionOperationId, title, `categoryId`, `description`)
+        values (#{id,jdbcType=INTEGER}, #{permissionOperationId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
+        #{categoryId,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">

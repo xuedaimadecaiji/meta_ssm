@@ -1,10 +1,9 @@
 package com.zeng.ssm.model;
 
-import com.zeng.ssm.common.Model;
+import com.zeng.ssm.common.AbstractModel;
 
-public class Permission implements Model {
+public class Permission extends AbstractModel {
 
-    private Integer id;
     private Integer permissionOperationId;
     private Integer categoryId;
     private String title;
@@ -12,14 +11,6 @@ public class Permission implements Model {
 
     private Category category;
     private PermissionOperation permissionOperation;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getPermissionOperationId() {
         return permissionOperationId;

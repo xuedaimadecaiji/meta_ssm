@@ -3,19 +3,19 @@
 <mapper namespace="com.zeng.ssm.dao.UserGroupDao">
     <resultMap id="BaseResultMap" type="com.zeng.ssm.model.UserGroup">
         <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="userId" jdbcType="INTEGER" property="userId" />
         <result column="title" jdbcType="VARCHAR" property="title" />
         <result column="description" jdbcType="VARCHAR" property="description" />
-        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
-        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+        <result column="createdAt" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="updatedAt" jdbcType="TIMESTAMP" property="updatedAt" />
         <collection column="id" property="permissionDataList" ofType="com.zeng.ssm.model.PermissionData"
                     javaType="java.util.ArrayList" select="com.zeng.ssm.dao.PermissionDataDao.selectListByGroupId"/>
 <!--        <association property="userId" column="user_id" select="com.zeng.ssm.dao.UserDao.selectByPrimaryKey"/>-->
     </resultMap>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.UserGroup" useGeneratedKeys="true" keyProperty="record.id" >
-        insert into `user_group` (id, user_id, `title`, `description`)
-        values (#{record.id,jdbcType=INTEGER}, #{record.userId,jdbcType=INTEGER}, #{record.title,jdbcType=VARCHAR}, #{record.description,jdbcType=VARCHAR})
+    <insert id="insert" parameterType="com.zeng.ssm.model.UserGroup" useGeneratedKeys="true" keyProperty="id" >
+        insert into `user_group` (id, userId, `title`, `description`)
+        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
@@ -27,7 +27,7 @@
     </select>
 
     <select id="selectListByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        SELECT * from `user_group` where user_id = #{userId};
+        SELECT * from `user_group` where userId = #{userId};
     </select>
 
 </mapper>

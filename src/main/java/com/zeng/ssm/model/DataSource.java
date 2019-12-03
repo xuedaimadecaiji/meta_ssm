@@ -1,10 +1,9 @@
 package com.zeng.ssm.model;
 
-import com.zeng.ssm.common.Model;
+import com.zeng.ssm.common.AbstractModel;
 
-public class DataSource implements Model {
+public class DataSource extends AbstractModel {
 
-    private Integer id;
     private String title;
 
     public String getTitle() {
@@ -15,11 +14,4 @@ public class DataSource implements Model {
         this.title = title;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }

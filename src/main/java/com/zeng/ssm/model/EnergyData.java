@@ -1,14 +1,13 @@
 package com.zeng.ssm.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zeng.ssm.common.Model;
+import com.zeng.ssm.common.AbstractModel;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class EnergyData implements Model {
+public class EnergyData extends AbstractModel {
 
-    private Integer id;
     private Integer sceneDataId;
     private Integer energyId;
     private Integer unitId;
@@ -25,14 +24,7 @@ public class EnergyData implements Model {
     private String origin;
     private int deviceId;
     private Device device;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private SceneData sceneData;
 
     public Integer getSceneDataId() {
         return sceneDataId;
@@ -120,5 +112,13 @@ public class EnergyData implements Model {
 
     public void setDevice(Device device) {
         this.device = device;
+    }
+
+    public SceneData getSceneData() {
+        return sceneData;
+    }
+
+    public void setSceneData(SceneData sceneData) {
+        this.sceneData = sceneData;
     }
 }

@@ -1,14 +1,13 @@
 package com.zeng.ssm.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zeng.ssm.common.Model;
+import com.zeng.ssm.common.AbstractModel;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class PermissionData implements Model {
+public class PermissionData extends AbstractModel {
 
-    private Integer id;
     private Integer userGroupId;
     private Integer permissionId;
 
@@ -20,14 +19,6 @@ public class PermissionData implements Model {
     private Date updatedAt;
 
     private Permission permission;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getUserGroupId() {
         return userGroupId;

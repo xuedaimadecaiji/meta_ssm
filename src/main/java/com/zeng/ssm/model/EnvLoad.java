@@ -1,11 +1,9 @@
 package com.zeng.ssm.model;
 
-import com.zeng.ssm.common.Model;
 import com.zeng.ssm.common.Searchable;
 
-public class EnvLoad extends Searchable implements Model {
+public class EnvLoad extends Searchable{
 
-    private Integer id;
     private String title;
     private int envLoadCategoryId;
     private EnvLoadCategory envLoadCategory;
@@ -22,21 +20,12 @@ public class EnvLoad extends Searchable implements Model {
         this.title = title;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-
-    public EnvLoadCategory getCategory() {
+    public EnvLoadCategory getEnvLoadCategory() {
         return envLoadCategory;
     }
 
-    public void setCategory(EnvLoadCategory category) {
-        this.envLoadCategory = category;
+    public void setEnvLoadCategory(EnvLoadCategory envLoadCategory) {
+        this.envLoadCategory = envLoadCategory;
     }
 
     @Override

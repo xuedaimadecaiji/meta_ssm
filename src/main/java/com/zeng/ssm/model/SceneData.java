@@ -1,16 +1,15 @@
 package com.zeng.ssm.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zeng.ssm.common.Model;
+import com.zeng.ssm.common.AbstractModel;
 import com.zeng.ssm.common.Searchable;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
 
-public class SceneData extends Searchable implements Model {
+public class SceneData extends Searchable {
 
-    private Integer id;
     private Integer categoryId;
     private Integer categoryRootId; // 标识分类大类，便于按大类查询
     private String title;
@@ -26,16 +25,6 @@ public class SceneData extends Searchable implements Model {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date updatedAt;
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
 
     public Integer getCategoryId() {
         return categoryId;

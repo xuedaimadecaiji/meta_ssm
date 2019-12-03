@@ -3,16 +3,16 @@
 <mapper namespace="com.zeng.ssm.dao.PermissionDataDao">
     <resultMap id="BaseResultMap" type="com.zeng.ssm.model.PermissionData">
         <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="user_group_id" jdbcType="INTEGER" property="userGroupId" />
-        <result column="permission_id" jdbcType="INTEGER" property="permissionId" />
-        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
-        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
-        <association property="permission" column="permission_id" select="com.zeng.ssm.dao.PermissionDao.selectByPrimaryKey"/>
+        <result column="userGroupId" jdbcType="INTEGER" property="userGroupId" />
+        <result column="permissionId" jdbcType="INTEGER" property="permissionId" />
+        <result column="createdAt" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="updatedAt" jdbcType="TIMESTAMP" property="updatedAt" />
+        <association property="permission" column="permissionId" select="com.zeng.ssm.dao.PermissionDao.selectByPrimaryKey"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.PermissionData" useGeneratedKeys="true" keyProperty="record.id" >
-        insert into `user_group_permission_data` (id, user_group_id, `permission_id`)
-        values (#{record.id,jdbcType=INTEGER}, #{record.userGroupId,jdbcType=INTEGER}, #{record.permissionId,jdbcType=INTEGER})
+    <insert id="insert" parameterType="com.zeng.ssm.model.PermissionData" useGeneratedKeys="true" keyProperty="id" >
+        insert into `user_group_permission_data` (id, userGroupId, `permissionId`)
+        values (#{id,jdbcType=INTEGER}, #{userGroupId,jdbcType=INTEGER}, #{permissionId,jdbcType=INTEGER})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
@@ -24,7 +24,7 @@
     </select>
 
     <select id="selectListByGroupId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        SELECT * from `user_group_permission_data` where user_group_id = #{userGroupId};
+        SELECT * from `user_group_permission_data` where userGroupId = #{userGroupId};
     </select>
 
 </mapper>

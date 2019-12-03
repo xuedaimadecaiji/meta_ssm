@@ -1,21 +1,12 @@
 package com.zeng.ssm.model;
 
-import com.zeng.ssm.common.Model;
+import com.zeng.ssm.common.AbstractModel;
 
-public class UnitCategory  implements Model {
+public class UnitCategory extends AbstractModel {
 
-    private int id;
     private String title;
     private int unitCategoryId;
     private UnitCategory unitCategory;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;

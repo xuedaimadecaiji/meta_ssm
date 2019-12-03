@@ -3,16 +3,16 @@
 <mapper namespace="com.zeng.ssm.dao.UserGroupDataDao">
     <resultMap id="BaseResultMap" type="com.zeng.ssm.model.UserGroupData">
         <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="user_id" jdbcType="INTEGER" property="userId" />
-        <result column="user_group_id" jdbcType="INTEGER" property="userGroupId" />
-        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
-        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
-        <association property="userGroup" column="user_group_id" select="com.zeng.ssm.dao.UserGroupDao.selectByPrimaryKey"/>
+        <result column="userId" jdbcType="INTEGER" property="userId" />
+        <result column="userGroupId" jdbcType="INTEGER" property="userGroupId" />
+        <result column="createdAt" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="updatedAt" jdbcType="TIMESTAMP" property="updatedAt" />
+        <association property="userGroup" column="userGroupId" select="com.zeng.ssm.dao.UserGroupDao.selectByPrimaryKey"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.UserGroupData" useGeneratedKeys="true" keyProperty="record.id" >
-        insert into `user_group_data` (id, user_id, `user_group_id`)
-        values (#{record.id,jdbcType=INTEGER}, #{record.userId,jdbcType=INTEGER}, #{record.userGroupId,jdbcType=INTEGER})
+    <insert id="insert" parameterType="com.zeng.ssm.model.UserGroupData" useGeneratedKeys="true" keyProperty="id" >
+        insert into `user_group_data` (id, userId, `userGroupId`)
+        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userGroupId,jdbcType=INTEGER})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
@@ -24,7 +24,7 @@
     </select>
 
     <select id="selectListByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        SELECT * from `user_group_data` where user_id = #{userId};
+        SELECT * from `user_group_data` where userId = #{userId};
     </select>
 
 </mapper>

@@ -3,23 +3,21 @@
 <mapper namespace="com.zeng.ssm.dao.ParameterDataDao">
     <resultMap id="BaseResultMap" type="com.zeng.ssm.model.ParameterData">
         <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="scene_data_id" jdbcType="INTEGER" property="sceneDataId" />
-        <result column="parameter_id" jdbcType="INTEGER" property="parameterId" />
-        <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+        <result column="sceneDataId" jdbcType="INTEGER" property="sceneDataId" />
+        <result column="parameterId" jdbcType="INTEGER" property="parameterId" />
+        <result column="unitId" jdbcType="INTEGER" property="unitId" />
         <result column="value" jdbcType="VARCHAR" property="value" />
-        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
-        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
-        <association property="parameter" column="parameter_id" select="com.zeng.ssm.dao.ParameterDao.selectByPrimaryKey"/>
-        <association property="unit" column="unit_id" select="com.zeng.ssm.dao.UnitDao.selectByPrimaryKey"/>
+        <result column="createdAt" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="updatedAt" jdbcType="TIMESTAMP" property="updatedAt" />
+        <association property="parameter" column="parameterId" select="com.zeng.ssm.dao.ParameterDao.selectByPrimaryKey"/>
+        <association property="unit" column="unitId" select="com.zeng.ssm.dao.UnitDao.selectByPrimaryKey"/>
+        <association property="sceneData" column="sceneDataId" select="com.zeng.ssm.dao.SceneDataDao.selectSimpleByPrimaryKey"/>
     </resultMap>
-    <sql id="Base_Column_List">
-        id, scene_data_id, parameter_id
-    </sql>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.ParameterData" useGeneratedKeys="true" keyProperty="record.id" >
-        insert into parameter_data (id, scene_data_id, `parameter_id`, `unit_id`, `value`)
-        values (#{record.id,jdbcType=INTEGER}, #{record.sceneDataId,jdbcType=INTEGER}, #{record.parameterId,jdbcType=INTEGER},
-        #{record.unitId,jdbcType=INTEGER}, #{record.value, jdbcType=VARCHAR})
+    <insert id="insert" parameterType="com.zeng.ssm.model.ParameterData" useGeneratedKeys="true" keyProperty="id" >
+        insert into parameter_data (id, sceneDataId, `parameterId`, `unitId`, `value`)
+        values (#{id,jdbcType=INTEGER}, #{sceneDataId,jdbcType=INTEGER}, #{parameterId,jdbcType=INTEGER},
+        #{unitId,jdbcType=INTEGER}, #{value, jdbcType=VARCHAR})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
@@ -31,7 +29,11 @@
     </select>
 
     <select id="selectParameterDataListBySceneDataId" resultMap="BaseResultMap">
-        select * from `parameter_data` where scene_data_id = #{pk}
+        select * from `parameter_data` where sceneDataId = #{pk}
     </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from `parameter_data` where id = #{pk,jdbcType=INTEGER}
+    </delete>
 
 </mapper>

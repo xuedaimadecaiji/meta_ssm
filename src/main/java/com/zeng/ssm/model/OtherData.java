@@ -1,14 +1,13 @@
 package com.zeng.ssm.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zeng.ssm.common.Model;
+import com.zeng.ssm.common.AbstractModel;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class OtherData  implements Model {
+public class OtherData extends AbstractModel {
 
-    private Integer id;
     private Integer sceneDataId;
     private Integer otherId;
     private Integer unitId;
@@ -21,14 +20,6 @@ public class OtherData  implements Model {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date updatedAt;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getSceneDataId() {
         return sceneDataId;

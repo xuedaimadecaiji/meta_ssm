@@ -4,11 +4,17 @@
     <resultMap id="BaseResultMap" type="com.zeng.ssm.model.Material">
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="type" jdbcType="VARCHAR" property="type" />
+        <result column="origin" jdbcType="VARCHAR" property="origin" />
+        <collection column="id" property="materialLoadList" ofType="com.zeng.ssm.model.MaterialLoad"
+                    javaType="java.util.ArrayList" select="com.zeng.ssm.dao.MaterialLoadDao.selectMaterialLoadListByMaterialId"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.Process" useGeneratedKeys="true" keyProperty="record.id" >
-        insert into material (`title`, `description`)
-        values (#{record.title,jdbcType=VARCHAR}, #{record.description,jdbcType=VARCHAR})
+    <insert id="insert" parameterType="com.zeng.ssm.model.Material" useGeneratedKeys="true" keyProperty="id" >
+        insert into material (`title`, `description`, `type`, `origin`, `materialLoadId`)
+        values (#{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}
+                , #{origin,jdbcType=VARCHAR}, #{materialLoadId,jdbcType=INTEGER})
     </insert>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">

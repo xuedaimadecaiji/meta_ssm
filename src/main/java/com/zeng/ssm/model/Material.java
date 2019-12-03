@@ -1,16 +1,25 @@
 package com.zeng.ssm.model;
 
-import com.zeng.ssm.common.Model;
+import com.zeng.ssm.common.AbstractModel;
 import com.zeng.ssm.common.Searchable;
 
-public class Material extends Searchable implements Model {
+import java.util.List;
 
-    private Integer id;
+public class Material extends Searchable{
+
     private String title;
     private String description;
     private String type;
     private String origin;
+    private List<MaterialLoad> materialLoadList;
 
+    public List<MaterialLoad> getMaterialLoadList() {
+        return materialLoadList;
+    }
+
+    public void setMaterialLoadList(List<MaterialLoad> materialLoadList) {
+        this.materialLoadList = materialLoadList;
+    }
 
     public String getTitle() {
         return title;
@@ -18,14 +27,6 @@ public class Material extends Searchable implements Model {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     @Override
@@ -56,4 +57,6 @@ public class Material extends Searchable implements Model {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }
