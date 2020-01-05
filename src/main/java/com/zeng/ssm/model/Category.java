@@ -10,6 +10,7 @@ public class Category extends AbstractModel {
     private Category parent;
     private String title;
     private List<Category> children;
+    private List<SceneData> sceneDataList;
 
     public Integer getParentId() {
         return parentId;
@@ -41,5 +42,13 @@ public class Category extends AbstractModel {
 
     public void setParent(Category parent) {
         this.parent = parent;
+    }
+
+    public List<SceneData> getSceneDataList() {
+        return sceneDataList;
+    }
+
+    public void setSceneDataList(List<SceneData> sceneDataList) {
+        this.sceneDataList = sceneDataList;
     }
 }

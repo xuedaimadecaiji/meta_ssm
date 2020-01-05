@@ -16,12 +16,6 @@ public class ManageController{
     @Resource
     ModelDao modelDao;
 
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public List<AbstractModel> getListWithQuery(@PathVariable String tableName, @RequestBody QueryMap queryMap) {
-        ModelImpl.setTableName(tableName);
-        return this.modelDao.selectAllBySearch(queryMap);
-    }
-
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<AbstractModel> getList(@PathVariable String tableName) {
         ModelImpl.setTableName(tableName);

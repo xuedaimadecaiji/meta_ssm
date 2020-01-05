@@ -13,7 +13,7 @@ public interface ModelDao {
 
     List<AbstractModel> selectByContent(String content);
 
-    List<AbstractModel> selectAllBySearch(QueryMap queryMap);
+//    List<AbstractModel> selectAllBySearch(QueryMap queryMap);
 
     List<AbstractModel> selectAll();
 

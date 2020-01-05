@@ -11,6 +11,8 @@ public interface CategoryDao extends ModelDao{
 
     List<Category> selectCategoryTree();
 
+    Category selectSimpleByPrimaryKey(Integer pk);
+
     List<Category> selectCategoriesByCategoryId(Integer id);
 
 }
