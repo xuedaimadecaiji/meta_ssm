@@ -13,6 +13,7 @@ public class Material extends Searchable{
     private String origin;
     private List<MaterialLoad> materialLoadList;
 
+
     public List<MaterialLoad> getMaterialLoadList() {
         return materialLoadList;
     }

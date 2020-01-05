@@ -4,6 +4,7 @@
     <resultMap id="BaseResultMap" type="com.zeng.ssm.model.Safety">
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
     </resultMap>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
@@ -14,4 +15,20 @@
         SELECT * from `safety`;
     </select>
 
+    <update id="updateByPrimaryKey" parameterType="com.zeng.ssm.model.Safety">
+        update `safety`
+        set
+          `title` = #{title,jdbcType=VARCHAR},
+          `description` = #{description,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <insert id="insert" parameterType="com.zeng.ssm.model.Safety" useGeneratedKeys="true" keyProperty="id" >
+        insert into  `safety` ( `title`,`description`)
+        values (#{title,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR})
+    </insert>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+      delete from `safety` where id = #{pk,jdbcType=INTEGER}
+    </delete>
 </mapper>

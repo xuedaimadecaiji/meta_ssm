@@ -4,6 +4,7 @@
     <resultMap id="BaseResultMap" type="com.zeng.ssm.model.MaterialDataCategory">
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="type" jdbcType="VARCHAR" property="type" />
     </resultMap>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
@@ -13,5 +14,22 @@
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT * from `material_data_category`;
     </select>
+
+    <update id="updateByPrimaryKey" parameterType="com.zeng.ssm.model.MaterialDataCategory">
+        update `material_data_category`
+        set
+          `title` = #{title,jdbcType=VARCHAR},
+          `type` = #{type,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <insert id="insert" parameterType="com.zeng.ssm.model.MaterialDataCategory" useGeneratedKeys="true" keyProperty="id" >
+        insert into  `material_data_category` ( `title`,`type`)
+        values (#{title,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
+    </insert>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+      delete from `material_data_category` where id = #{pk,jdbcType=INTEGER}
+    </delete>
 
 </mapper>
