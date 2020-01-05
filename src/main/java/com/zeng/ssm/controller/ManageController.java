@@ -1,9 +1,6 @@
 package com.zeng.ssm.controller;
 
-import com.zeng.ssm.common.AbstractModel;
-import com.zeng.ssm.common.ModelDao;
-import com.zeng.ssm.common.ModelHandler;
-import com.zeng.ssm.common.ModelImpl;
+import com.zeng.ssm.common.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +15,12 @@ public class ManageController{
 
     @Resource
     ModelDao modelDao;
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public List<AbstractModel> getListWithQuery(@PathVariable String tableName, @RequestBody QueryMap queryMap) {
+        ModelImpl.setTableName(tableName);
+        return this.modelDao.selectAllBySearch(queryMap);
+    }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<AbstractModel> getList(@PathVariable String tableName) {

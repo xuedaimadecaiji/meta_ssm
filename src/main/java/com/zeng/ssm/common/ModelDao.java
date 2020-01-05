@@ -13,6 +13,8 @@ public interface ModelDao {
 
     List<AbstractModel> selectByContent(String content);
 
+    List<AbstractModel> selectAllBySearch(QueryMap queryMap);
+
     List<AbstractModel> selectAll();
 
     AbstractModel selectByPrimaryKey(Integer pk);
