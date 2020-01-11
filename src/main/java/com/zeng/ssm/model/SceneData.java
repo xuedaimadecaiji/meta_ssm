@@ -1,7 +1,6 @@
 package com.zeng.ssm.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zeng.ssm.common.AbstractModel;
 import com.zeng.ssm.common.Searchable;
 import org.springframework.format.annotation.DateTimeFormat;
 
