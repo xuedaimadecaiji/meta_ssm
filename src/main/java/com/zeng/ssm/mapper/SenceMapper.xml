@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zeng.ssm.dao.UnitCategoryDao">
-    <resultMap id="BaseResultMap" type="com.zeng.ssm.model.UnitCategory">
+<mapper namespace="com.zeng.ssm.dao.SceneDao">
+    <resultMap id="BaseResultMap" type="com.zeng.ssm.model.Scene">
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="title" jdbcType="VARCHAR" property="title" />
     </resultMap>
-
+    
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        SELECT * from `unit_category` where id = #{pk};
+        SELECT * from `scene` where id = #{pk};
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * from `unit_category`;
+        SELECT * from `scene`;
     </select>
 
-    <update id="updateByPrimaryKey" parameterType="com.zeng.ssm.model.UnitCategory">
-        update `unit_category`
+    <update id="updateByPrimaryKey" parameterType="com.zeng.ssm.model.Scene">
+        update `scene`
         set
           `title` = #{title,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
 
-    <insert id="insert" parameterType="com.zeng.ssm.model.UnitCategory" useGeneratedKeys="true" keyProperty="id" >
-        insert into  `unit_category` ( `title`)
+    <insert id="insert" parameterType="com.zeng.ssm.model.Scene" useGeneratedKeys="true" keyProperty="id" >
+        insert into  `scene` ( `title`)
         values (#{title,jdbcType=VARCHAR})
     </insert>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-      delete from `unit_category` where id = #{pk,jdbcType=INTEGER}
+      delete from `scene` where id = #{pk,jdbcType=INTEGER}
     </delete>
 </mapper>
